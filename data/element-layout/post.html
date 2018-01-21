@@ -1,0 +1,190 @@
+
+<script src="js/post.js"></script>
+<div>
+    <h2 id="post" class="title-style">POST MANGAGER</h2>
+    <div class="container">
+        <div>
+            <h3 class="col-sm-8">POST AVAILABLE</h3>
+            <div class="col-sm-3" style="float:right; margin-right:5%; ">
+                <!-- Button trigger modal -->
+                <button type="button" class="btn btn-lg btn-primary btn_create_new" data-toggle="modal"
+                        data-target="#exampleModal">
+                    Create a new post
+                </button>
+            </div>
+        </div>
+
+        <div class="row" style="float: left; margin-top: 20px">
+            <div class="row-table">
+                <div class="column-table text-center" style="width: 40px;">
+                    <b>ID</b>
+                </div>
+                <div class="column-table text-center" style="min-width:200px;">
+                    <b>Title</b>
+                </div>
+                <div class="column-table text-center" style="width:550px;">
+                    <p><b>Content</b></p>
+                </div>
+                <div class="column-table text-center" style="width: 80px;">
+                    <b>Status</b>
+                </div>
+                <div class="column-table text-center" style="width: 200px;">
+                    <b>Options</b>
+                </div>
+            </div>
+
+            <?php
+                   $post->firstDisplayInfoPost();
+            ?>
+        </div>
+
+    </div>
+
+
+    <!-- Modal add -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title text-center text-primary" id="exampleModalLabel">Create New Post</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body"> <!-- modal body -->
+                    <form id="post_submit" method="post" action="http://localhost/CoffeWebsite/app/controllers/admin/PostController.php?fnc=addPost">
+                        <div class="form-group">
+                            <input type="file" class="bottom10" id="uploadfiles" accept="image/*"/>
+                            <input type="hidden" id="name_image" name="name_image" accept="image/*"/>
+                            <div id="gallery" class="gallery"></div>
+                            <script src="js/gallery.js"></script>
+                            <label for="title_post">Title</label>
+                            <input type="text" class="form-control bottom10" id="title_post" name="title_post"
+                                   placeholder="Title Post">
+                            <label for="title_post">Summary description</label>
+                            <input type="text" class="form-control" id="summary_post" name="summary_post"
+                                   placeholder="Summary description">
+                        </div>
+                        <input type="hidden" name="id_category_post" id="id_category_post">
+                        <div class="form-group">
+                            <label>Content</label>
+                            <?php
+                                $area = '<textarea name="content_post" id="content_post"></textarea>';
+                            include 'froala.php';
+                            ?>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="bottom10">
+                                <label for="status_post" class="text-justify control-label"> Status </label>
+                                <select class="form-control" name="status_post_select" id="status_post_select">
+                                    <option value="1">Enable</option>
+                                    <option value="12">Disable</option>
+                                </select>
+                                <input type="hidden" id="status_post" name="status_post">
+                            </div>
+
+                            <div>
+                                <label for="status_post" class="text-justify control-label"> Category </label>
+                                <?php
+                                    $post->addCategoryCheck(null);
+                                ?>
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- modal body -->
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button submit" id="btn_post" class="btn btn-primary">Post on website</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- modal add -->
+
+
+    <!-- modal edit -->
+    <div id="edit_post_modal" class="modal fade edit-post-modal" tabindex="-1" role="dialog"
+         aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <h3 class="modal-title text-center text-primary ">Edit Post</h3>
+                <div class="modal-body"> <!-- modal body -->
+                    <form id="edit_post_submit" method="post" action="http://localhost/CoffeWebsite/app/controllers/admin/PostController.php?fnc=editPost">
+                        <div class="form-group">
+                            <input class="bottom10" type="file" id="uploadfiles_edit" accept="image/*"/>
+                            <input type="hidden" id="name_image_edit" name="name_image_edit"/>
+                            <div id="gallery_edit" class="gallery bottom10"></div>
+                            <script src="js/gallery.js"></script>
+                            <label for="title_post">Title</label>
+                            <input type="text" class="form-control bottom10" id="edit_title_post" name="edit_title_post"
+                                   placeholder="Title Post">
+                            <label for="title_post">Summary description</label>
+                            <input type="text" class="form-control" id="summary_edit_post" name="summary_edit_post"
+                                   placeholder="Summary description">
+                        </div>
+                        <input type="hidden" name="edit_id_category_post" id="edit_id_category_post">
+                        <input type="hidden" name="edit_id_post" id="edit_id_post">
+                        <div class="form-group">
+                            <label>Content</label>
+                            <?php
+                                $area = '<textarea name="edit_content_post" id="edit_content_post"></textarea>';
+                                include 'froala.php';
+                            ?>
+                        </div>
+
+                        <div class="form-group ">
+                            <div class="div-select bottom10">
+                                <label for="status_post" class="text-justify control-label"> Status </label>
+                                <select class="form-control" name="status_post_select" id="edit_status_post_select">
+                                    <option value="1">Enable</option>
+                                    <option value="0">Disable</option>
+                                </select>
+                                <input type="hidden" id="edit_status_post" name="edit_status_post">
+                            </div>
+                            <div class="edit_check">
+                            </div>
+                        </div>
+                    </form>
+                </div> <!-- modal body -->
+
+                <div class="modal-footer">
+                    <button type="button" id="btn_edit_close" class="btn btn-secondary" data-dismiss="modal">Close
+                    </button>
+                    <button type="button" id="btn_edit_post" class="btn btn-primary">Edit Post</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- modal delete -->
+    <div id="delete_post_modal" class="modal fade delete-post-modal" tabindex="1" role="dialog"
+         aria-labelledby="mySmallModalLabel"
+         aria-hidden="true">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content">
+                <form id="delete_post" class="margin10" method="post"
+                      action="http://localhost/CoffeWebsite/app/controllers/admin/PostController.php?fnc=deletePost">
+                    <h3 id="tip_delete_post" class="hidden-me"> Are you sure delete category?</h3>
+                    <input type="hidden" name="askDeletePost" value=1>
+                    <input type="hidden" id="post_id_delete" name="post_id_delete" value=2>
+                    <div class="btn btn-group margin10 ">
+                        <button type="submit" id="btn_delete_post" class="btn  btn-danger ">
+                            Delete
+                        </button>
+                        <button type="submit" id="btn_delete_post_cancel" class="btn btn-info center-block"> Cancel
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- modal delete -->
+</div>
+

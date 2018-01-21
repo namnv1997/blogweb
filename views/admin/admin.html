@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin</title>
+    <meta name="Description" content="This is admin">
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="Styles/normalize.css"/> <!-- reset CSS-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.css">
+    <link href="Styles/jquery.multiselect.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="Styles/admin_styles.css"/> <!-- css website -->
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="js/jquery.multiselect.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.0/jquery-confirm.min.js"></script>
+</head>
+<body>
+<div id="container">
+    <div id="menu">
+        <ul>
+            <li><a href="#"> Intro </a></li>
+            <li><a href="#category"> Category</a></li>
+            <li><a href="#post"> Post</a></li>
+            <li><a href="#comment">Comment</a></li>
+        </ul>
+    </div>  <!-- menu -->
+
+    <div id="content">
+        <div id="header">
+            <div id="logo"><img src="http://localhost/CoffeWebsite/data/Images/admin.jpg"></div>
+            <div id="slogan">
+                <p>Network & Security </p>
+            </div>
+        </div>  <!-- header -->
+        <div class="call-to-action">
+            <h3> What Can You Do?</h3>
+            <p> This page will help you management your blog: Add Category, Edit Cateogory, Delete Category and Manage
+                Post. </p>
+            <br>
+        </div>  <!-- call to action -->
+        <?php       include 'data/element-layout/category.html';
+                    include 'data/element-layout/post.html';
+                    include 'data/element-layout/comment.html';
+                ?>
+
+    </div><!-- content -->
+    <div id="footer">
+        <p>Copyright &copy; 2017 Localhost.Admin</p>
+    </div>
+</div>  <!-- container -->
+</body>
+</html>

@@ -1,0 +1,78 @@
+<script src="js/category.js"></script>
+
+<h2 class="title-style" id="category">CATEGORY MANAGER</h2>
+<div class="row" style="min-height: 500px;">
+    <div id="box1" class="col">
+        <h3>CATEGORY AVAILABLE</h3>
+        <div class="row-table">
+            <div class="column-table minw30" style="min-width: 30px;">ID</div>
+            <div class="column-table minw250">Category Name</div>
+        </div>
+
+        <?php
+            $category->firstInfoCategory();
+
+        ?>
+
+    </div>
+
+
+    <div id="box2" class="col">
+        <h3>ADD NEW CATEGORY</h3>
+        <form id="add_category" method="post" action="http://localhost/CoffeWebsite/app/controllers/admin/CategoryController.php?fnc=addCategory">
+            <input id="category_name" name="category_name" type="text" placeholder="Category Name"
+                   class="form-control form-box-me">
+            <input type="hidden" name="askAdd" value=1>
+            <button type="submit" id="btn_add_cate" class="btn btn-lg btn-primary">Add Category</button>
+        </form>
+
+        <!-- modal edit -->
+        <div class="modal fade edit-category-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <form id="edit_category" style="margin: 10px;" method="post"
+                          action="http://localhost/CoffeWebsite/app/controllers/admin/CategoryController.php?fnc=editCategory">
+                        <input id="category_name_edit" name="category_name_edit" class="form-control form-box-me"
+                               type="text" placeholder="New category name">
+                        <input type="hidden" name="askEdit" value=1>
+                        <input type="hidden" id="category_id_edit" name="category_id_edit" value=2>
+
+                    </form>
+                    <div class="btn btn-group margin10">
+                        <button id="btn_edit_cate" class="btn btn-info btn-primary center-block">
+                            Change
+                        </button>
+                        <button id="btn_edit_cancel" class="btn center-block"> Cancel</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- modal edit -->
+
+        <!-- modal delete -->
+        <div class="modal fade delete-category-modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <form id="delete_category" class="margin10" method="post"
+                          action="http://localhost/CoffeWebsite/app/controllers/admin/CategoryController.php?fnc=deleteCategory">
+                        <h3 id="tip_delete" class="hidden-me"> Are you sure delete category?</h3>
+                        <input type="hidden" name="askDelete" value=1>
+                        <input type="hidden" id="category_id_delete" name="category_id_delete" value=2>
+                        <div class="btn btn-group margin10 ">
+                            <button type="submit" id="btn_delete_cate" class="btn  btn-danger ">
+                                Delete
+                            </button>
+                            <button type="submit" id="btn_delete_cancel" class="btn btn-info center-block"> Cancel
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- modal delete -->
+    </div>
+</div>  <!-- row -->
+<br><br><br><br>
